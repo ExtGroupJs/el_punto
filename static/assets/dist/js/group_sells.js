@@ -98,6 +98,11 @@ $(document).ready(function () {
       { data: "net_total", title: "Total Neto" },
       { data: "payment_method_label", title: "Método de Pago" },
       {
+        data: "delivered",
+        title: "Entregado",
+        render: (data) => data ? '<span class="badge badge-success">Sí</span>' : '<span class="badge badge-secondary">No</span>',
+      },
+      {
         data: "id",
         title: "Acciones",
         render: (data, type, row) => {
@@ -255,8 +260,10 @@ async function generarReporteVentas(startDate, endDate) {
       html: buildInformeHtml(reportText),
       width: 700,
       showDenyButton: true,
+      showCancelButton: true,
       confirmButtonText: "Copiar reporte",
       denyButtonText: "Cerrar",
+      cancelButtonText: "Entregar",
       didOpen: () => {
         const comprobante = document.getElementById("sale-comprobante");
         if (comprobante) {
@@ -284,6 +291,40 @@ async function generarReporteVentas(startDate, endDate) {
           timer: 4000,
         });
       }
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      await Swal.fire({
+        icon: "info",
+        title: "Entregando",
+        text: "Se marcarán los grupos como entregados",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      const shopId = localStorage.getItem("selectedShopId");
+      const params = {};
+      if (startDate) params.start_date = startDate;
+      if (endDate) params.end_date = endDate;
+      if (shopId) params.shop = shopId;
+
+      axios.get(`${urlSellGroup}mark-delivered/`, { params })
+        .then(() => {
+          Swal.fire({
+            icon: "success",
+            title: "Entregado",
+            text: "Grupos del periodo marcados como entregados",
+            showConfirmButton: false,
+            timer: 4000,
+          });
+          $("#tabla-de-Datos").DataTable().ajax.reload(null, false);
+        })
+        .catch(e => {
+          Swal.fire({
+            icon: "error",
+            title: "Error al marcar entregados",
+            text: e.response?.data?.detail || e.message,
+            showConfirmButton: false,
+            timer: 4000,
+          });
+        });
     }
   } catch (error) {
     Swal.fire({
@@ -348,12 +389,16 @@ async function fetchComprobante(
           icon: "success",
           title: "Comprobante copiado",
           text: "El comprobante se copio al portapapeles.",
+          showConfirmButton: false,
+          timer: 4000,
         });
       } else {
         await Swal.fire({
           icon: "error",
           title: "No se pudo copiar",
           text: "No fue posible copiar el comprobante automaticamente.",
+          showConfirmButton: false,
+          timer: 4000,
         });
       }
     }
