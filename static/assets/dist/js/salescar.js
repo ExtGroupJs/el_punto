@@ -13,6 +13,7 @@ let importe_total = 0;
 let clientesRegistrados = [];
 let selectedClientId = null;
 let lastSellGroupId = null;
+const defaultProductImage = document.getElementById("productImagen")?.src || "";
 
 function buildComprobanteText({
   saleId,
@@ -517,16 +518,12 @@ $("#comprobanteAlmacen").on("click", async function () {
           icon: "success",
           title: "Comprobante copiado",
           text: "El comprobante se copio al portapapeles.",
-          showConfirmButton: false,
-          timer: 4000,
         });
       } else {
         await Swal.fire({
           icon: "error",
           title: "No se pudo copiar",
           text: "No fue posible copiar el comprobante automaticamente.",
-          showConfirmButton: false,
-          timer: 4000,
         });
       }
     }
