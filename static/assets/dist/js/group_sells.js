@@ -111,7 +111,6 @@ $(document).ready(function () {
                     <button type="button" title="Comprobante para almacén" class="btn bg-olive" onclick="generarComprobanteAlmacen('${data}')">
                       <i class="fas fa-warehouse"></i>
                     </button>
-                      <i class="fas fa-trash"></i>
                   </div>`;
         },
       },
@@ -273,12 +272,16 @@ async function generarReporteVentas(startDate, endDate) {
           icon: "success",
           title: "Reporte copiado",
           text: `El reporte por $${total} se copio al portapapeles.`,
+          showConfirmButton: false,
+          timer: 4000,
         });
       } else {
         await Swal.fire({
           icon: "error",
           title: "No se pudo copiar",
           text: "No fue posible copiar el reporte automaticamente.",
+          showConfirmButton: false,
+          timer: 4000,
         });
       }
     }
@@ -467,6 +470,4 @@ function toggleGroupSells(groupId) {
     showCloseButton: true,
     confirmButtonText: "Cerrar",
   });
-}
-
 }

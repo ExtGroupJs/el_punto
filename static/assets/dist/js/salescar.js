@@ -128,12 +128,16 @@ async function mostrarComprobanteConCopia(titulo, comprobanteText) {
         icon: "success",
         title: "Comprobante copiado",
         text: "El comprobante se copio al portapapeles.",
+        showConfirmButton: false,
+        timer: 4000,
       });
     } else {
       await Swal.fire({
         icon: "error",
         title: "No se pudo copiar",
         text: "No fue posible copiar el comprobante automaticamente.",
+        showConfirmButton: false,
+        timer: 4000,
       });
     }
   }
@@ -435,6 +439,7 @@ $("#crearVenta").on("click", function () {
       selectedClientId = null;
       $("#client_select").val("").trigger("change.select2");
       $("#payment_method").val("U"); // Restablecer a USD por defecto
+      actualizarTabla();
     })
     .catch((error) => {
       load.hidden = true;
@@ -512,12 +517,16 @@ $("#comprobanteAlmacen").on("click", async function () {
           icon: "success",
           title: "Comprobante copiado",
           text: "El comprobante se copio al portapapeles.",
+          showConfirmButton: false,
+          timer: 4000,
         });
       } else {
         await Swal.fire({
           icon: "error",
           title: "No se pudo copiar",
           text: "No fue posible copiar el comprobante automaticamente.",
+          showConfirmButton: false,
+          timer: 4000,
         });
       }
     }
