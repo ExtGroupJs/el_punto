@@ -42,7 +42,7 @@ y luego
 
 ## Create the virtual enviroment for python
 
-     python3.11 -m venv venv
+     uv venv --python 3.11 venv
 
 ## Activate virtual enviroment:
 
@@ -50,7 +50,7 @@ y luego
  
 ## Install required packages running in the console:
 
-    pip install -r deploy_requirements.txt
+    uv sync --active --extra deploy
 
 ## Make a copy of REFERENCE.env in the same directory and remove the filename. Finally the file should exists with the name: .env
 

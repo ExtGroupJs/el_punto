@@ -63,9 +63,9 @@ Fall back to grep/glob for: string literals, error messages, config values, non-
 ## Local Setup
 
 ```bash
-python -m venv venv
+uv venv --python 3.11 venv
 source venv/bin/activate
-pip install -r requirements.txt
+uv sync --active
 cp REFERENCE.env .env        # set RUNNING_FROM=local for SQLite
 python manage.py migrate
 python manage.py create_test_users   # creates 300 dummy users
@@ -184,7 +184,7 @@ MANDATORY for any new feature/entity. Follow this layout exactly so the codebase
 
 ## CI / Deploy
 
-GitHub Actions on push to `main`: SSH into Contabo server (`217.76.49.67`), `git pull`, `pip install`, `migrate`, `collectstatic`, restart gunicorn.
+GitHub Actions on push to `main`: SSH into Contabo server (`217.76.49.67`), `git pull`, `uv sync --active --extra deploy`, `migrate`, `collectstatic`, restart gunicorn.
 
 ## Testing Conventions
 
