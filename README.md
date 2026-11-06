@@ -8,8 +8,8 @@ git push -uf origin main
 ```
 
 # STEPS FOR DEVELOPING
-1.  when the code is already cloned, create a python virtual enviroment (using currently python 3.11):
-uv venv --python 3.11 venv
+1.  when the code is already cloned, create a python virtual enviroment (using currently python 3.12.3):
+uv venv --python 3.12.3 venv
 
 2. Activate virtual enviroment:
 source /venv/bin/activate # for linux

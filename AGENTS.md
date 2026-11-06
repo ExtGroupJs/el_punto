@@ -2,7 +2,7 @@
 
 ## Project
 
-Django 5.1.1 + DRF 3.15.2 auto parts shop (Geely vehicles). Python 3.11. Session-based auth. Spanish locale (`es-es`). `USE_TZ = False`, timezone `America/Havana`.
+Django 6.1.3 + DRF 3.18.3 auto parts shop (Geely vehicles). Python 3.12.3. Session-based auth. Spanish locale (`es-es`). `USE_TZ = False`, timezone `America/Havana`.
 
 ## Programming Principles (MANDATORY)
 
@@ -63,7 +63,7 @@ Fall back to grep/glob for: string literals, error messages, config values, non-
 ## Local Setup
 
 ```bash
-uv venv --python 3.11 venv
+uv venv --python 3.12.3 venv
 source venv/bin/activate
 uv sync --active
 cp REFERENCE.env .env        # set RUNNING_FROM=local for SQLite
@@ -158,7 +158,7 @@ MANDATORY for any new feature/entity. Follow this layout exactly so the codebase
 
 ### URLs
 
-- Register each viewset in the app's `urls.py`. `business_app` uses `ExtendedSimpleRouter`; other apps use `routers.DefaultRouter`.
+- Register each viewset in the app's `urls.py`. `business_app` uses DRF `SimpleRouter`; other apps use `routers.DefaultRouter`.
 - Mount app routers in `project_site/urls.py` under their prefix (`business-gestion/`, `user-gestion/`, etc.).
 
 ## Key Patterns
@@ -179,7 +179,7 @@ MANDATORY for any new feature/entity. Follow this layout exactly so the codebase
 - Redis caching is disabled in DEBUG mode (uses `DummyCache`). Production uses Redis on `127.0.0.1:6379`.
 - `SessionTimeoutMiddleware` is active — sessions expire after `SESSION_EXPIRE_SECONDS` (default 600s).
 - `drf-orjson-renderer` for API responses, not default DRF JSON.
-- `drf-extensions` (`ExtendedSimpleRouter`) used in `business_app` URLs — supports nested routes.
+- `business_app` routing uses DRF `SimpleRouter` (no nested routing currently in use).
 - `ruff` is a dependency but has no config file — uses all defaults.
 
 ## CI / Deploy
