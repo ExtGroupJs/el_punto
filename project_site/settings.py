@@ -14,10 +14,8 @@ import os
 from pathlib import Path
 
 import environ
-from django.utils.translation import gettext_lazy as _
-
 import sentry_sdk
-
+from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -63,7 +61,8 @@ sentry_sdk.init(
 )
 
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["*"])
+CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=[])
 
 # Application definition
 
@@ -85,6 +84,7 @@ INSTALLED_APPS = [
     "solo",
     "drf_spectacular",
     "drf_spectacular_sidecar",  # required for Django collectstatic discovery
+    "django_celery_beat",
     "apps.common.middlewares",
 ]
 SPECTACULAR_SETTINGS = {
@@ -173,7 +173,7 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",  # noqa: E501
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
         "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
@@ -195,7 +195,7 @@ INTERNAL_IPS = [
 if DEBUG:
     import socket  # only if you haven't already imported this
 
-    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())  # noqa: F811
+    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
     INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + [
         "127.0.0.1",
         "10.0.2.2",
@@ -304,12 +304,22 @@ LOGGING = {
 }
 
 CACHE_DEFAULT_TIMEOUT = env.int("CACHE_DEFAULT_TIMEOUT", default=300)
+REDIS_HOST = env("REDIS_HOST", default="127.0.0.1")
+REDIS_PORT = env.int("REDIS_PORT", default=6379)
+CELERY_BROKER_URL = env("CELERY_BROKER_URL", default=f"redis://{REDIS_HOST}:{REDIS_PORT}/0")
+CELERY_RESULT_BACKEND = env("CELERY_RESULT_BACKEND", default=CELERY_BROKER_URL)
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TIMEZONE = TIME_ZONE
+CELERY_ENABLE_UTC = False
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.dummy.DummyCache"
         if DEBUG
         else "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379",
+        "LOCATION": f"redis://{REDIS_HOST}:{REDIS_PORT}/1",
         "TIMEOUT": CACHE_DEFAULT_TIMEOUT,
     }
 }

@@ -82,6 +82,29 @@ docker ps
 docker compose up -d
 ```
 
+### Compose de despliegue completo (Django + Gunicorn + Celery + Nginx)
+
+El repositorio incluye una configuración de despliegue con:
+
+- `docker-compose.yml` (producción)
+- `docker-compose-dev.yml` (infraestructura de desarrollo: Postgres + Redis)
+- `Dockerfile` (aplicación Django)
+- `Dockerfile.nginx` (reverse proxy Nginx)
+
+Antes de levantar `docker-compose.yml`, define en `.env` al menos:
+
+- `WEBSITE_SLUG_NAME`
+- `SECRET_KEY`
+- `DB_REMOTE_NAME`, `DB_REMOTE_USER`, `DB_REMOTE_PASSWORD`
+- `ALLOWED_HOSTS`
+- `CSRF_TRUSTED_ORIGINS`
+
+Para ejecutar el stack de producción:
+
+```bash
+docker compose -f docker-compose.yml up -d --build
+```
+
 ## Restaurar la Base de Datos
 
 Primero, muévete a la carpeta donde está el respaldo. Como ejemplo genérico, usaremos el nombre `backup.sql`.
