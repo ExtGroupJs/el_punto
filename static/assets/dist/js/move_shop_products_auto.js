@@ -260,7 +260,6 @@ async function cargarShopProducts(shopId) {
   return results.map((item) => {
     const candidateText = [
       item.product_name || "",
-      item.model_brand || "",
       item.extra_info || "",
       item.__repr__ || "",
     ]
@@ -271,7 +270,6 @@ async function cargarShopProducts(shopId) {
       id: item.id,
       currentQuantity: Number(item.quantity || 0),
       displayName: item.product_name || "Sin nombre",
-      modelBrand: item.model_brand || "",
       candidateText,
       normalizedCandidate: normalizeText(candidateText),
     };

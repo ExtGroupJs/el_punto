@@ -368,7 +368,7 @@ $(document).ready(function () {
         render: renderProductImage,
       },
       { data: "product_name", title: "Producto" },
-      { data: "model_brand", title: "Marca - Modelo" },
+      { data: "classification_name", title: "Clasificación", defaultContent: "-" },
       {
         data: "pallet_label",
         title: "Pallet",
@@ -507,7 +507,6 @@ function poblarModelosProductoModal(selectedModelId = "") {
   if (!$model) return Promise.resolve();
 
   $model.innerHTML = "";
-  return axios.get("/business-gestion/models/").then(function (response) {
     response.data.results.forEach(function (element) {
       const option = new Option(element.__str__, element.id);
       $model.add(option);

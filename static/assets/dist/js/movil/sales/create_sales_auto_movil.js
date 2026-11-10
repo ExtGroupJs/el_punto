@@ -216,7 +216,6 @@ async function cargarShopProducts(shopId) {
     displayName:
       item.__repr__ || item.__str__ || item.product?.name || String(item.id),
     productName: item.product?.name || "",
-    modelBrand: item.product?.model_brand || "",
     stock: item.quantity,
     sellPrice: item.sell_price,
     normalizedName: normalizeText(item.__repr__ || item.product?.name || ""),

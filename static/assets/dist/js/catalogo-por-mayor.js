@@ -69,7 +69,6 @@ function renderProducts(products) {
               <div class="product_desc_info">
                 <div class="product-review">
                   <h5 class="manufacturer">
-                    <a>${product.product.model.brand.name} ${product.product.model.name}</a>
                   </h5>
                   <div class="rating-box">
                     <ul class="rating">
@@ -107,7 +106,6 @@ function renderProducts(products) {
               <div class="product_desc_info">
                 <div class="product-review">
                   <h5 class="manufacturer">
-                    <a>${product.product.model.brand.name} ${product.product.model.name}</a>
                   </h5>
                   <div class="rating-box">
                     <ul class="rating">
@@ -232,7 +230,6 @@ function loadModels(id) {
     brand: id,
   };
   axios
-    .get(`/business-gestion/models/catalog/`, { params })
     .then((res) => {
       const models = res.data.results;
       populateModelsList(models);
@@ -304,7 +301,6 @@ function searchProducts() {
 
 function loadBrands() {
   axios
-    .get("/business-gestion/brands/catalog/")
     .then((res) => {
       const brands = res.data.results;
       populateBrandsSelect(brands);
@@ -470,9 +466,7 @@ async function showProductDetails(productId) {
     document.getElementById("modalProductName").textContent =
       product.product.name;
     document.getElementById("modalBrandName").textContent =
-      product.product.model.brand.name;
     document.getElementById("modalModelName").textContent =
-      product.product.model.__str__;
     document.getElementById("modalPrice").textContent =
       `$${product.sell_price}`;
     document.getElementById("modalShopName").textContent = product.shop_name;

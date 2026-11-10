@@ -353,7 +353,6 @@ function function_delete(id, name) {
 function poblarListas() {
   // Poblar la lista de modelos
   var $model = document.getElementById("models");
-  axios.get("/business-gestion/models/").then(function (response) {
     response.data.results.forEach(function (element) {
       var option = new Option(element.name, element.id);
       $model.add(option);

@@ -77,7 +77,6 @@ function initShopProductsTable(palletId) {
     }),
     columns: [
       { data: "product_name", title: "Producto" },
-      { data: "model_brand", title: "Marca / Modelo" },
       { data: "quantity", title: "Cantidad" },
     ],
   });

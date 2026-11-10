@@ -258,7 +258,6 @@ async function cargarShopProducts(shopId) {
   return results.map((item) => {
     const candidateText = [
       item.product_name || "",
-      item.model_brand || "",
       item.extra_info || "",
       item.__repr__ || "",
     ]
@@ -268,7 +267,6 @@ async function cargarShopProducts(shopId) {
       id: item.id,
       currentQuantity: Number(item.quantity || 0),
       displayName: item.product_name || "Sin nombre",
-      modelBrand: item.model_brand || "",
       sellPrice: item.sell_price,
       productId: item.product.id,
       candidateText,
@@ -765,7 +763,6 @@ function abrirModalCrearShopProduct(entryIndex, productId, productName) {
 
 function poblarModelos() {
   const $model = document.getElementById("product-model");
-  axios.get("/business-gestion/models/").then(function (response) {
     response.data.results.forEach(function (model) {
       const option = new Option(model.name, model.id);
       $model.add(option);
@@ -881,7 +878,6 @@ async function crearShopProduct(form) {
         id: newShopProduct.id,
         currentQuantity: Number(newShopProduct.quantity),
         displayName: productName,
-        modelBrand: newShopProduct.model_brand || "",
         sellPrice: newShopProduct.sell_price,
         productId: productId,
         candidateText: productName,

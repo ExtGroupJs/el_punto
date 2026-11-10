@@ -17,7 +17,7 @@ class ShopProductsSerializer(serializers.ModelSerializer):
 
     shop_name = serializers.CharField(read_only=True)
     product_name = serializers.CharField(read_only=True)
-    model_brand = serializers.CharField(read_only=True)
+    classification_name = serializers.CharField(read_only=True)
     pallet_label = serializers.CharField(source="pallet", read_only=True)
     extra_log_info = serializers.CharField(write_only=True, default=None)
 
@@ -31,7 +31,7 @@ class ShopProductsSerializer(serializers.ModelSerializer):
             "shop_name",
             "product",
             "product_name",
-            "model_brand",
+            "classification_name",
             "pallet",
             "pallet_label",
             "extra_info",

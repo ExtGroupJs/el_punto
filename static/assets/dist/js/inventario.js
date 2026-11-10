@@ -100,7 +100,7 @@ $(document).ready(function () {
         },
       },
       { data: "product_name", title: "Producto" },
-      { data: "model_brand", title: "Marca - Modelo" },
+      { data: "classification_name", title: "Clasificación", defaultContent: "-" },
       { data: "quantity", title: "Cantidad" },
 
       { data: "sell_price", title: "Precio de Venta" },

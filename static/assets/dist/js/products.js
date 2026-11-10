@@ -247,6 +247,13 @@ $("#modal-crear-products").on("show.bs.modal", function (event) {
         form.elements.name.value = product.name || "";
         form.elements.description.value = product.description || "";
         
+        // Establecer clasificación
+        if (product.classification) {
+          const classId = typeof product.classification === 'object' ? product.classification.id : product.classification;
+          $("#classification").val(classId).trigger("change");
+          form.elements.classification.value = classId;
+        }
+        
         // Establecer el valor del modelo
         // Como ReadProductSerializer devuelve el modelo como objeto, extraemos el ID
         const modelId = product.model && typeof product.model === 'object' 
@@ -437,7 +444,6 @@ function poblarListas() {
   var $model = document.getElementById("model");
   var $filterModel = document.getElementById("filter-model");
   $filterModel.add(new Option("ninguno", ""));
-  axios.get("/business-gestion/models/").then(function (response) {
     response.data.results.forEach(function (element) {
       var option = new Option(element.__str__, element.id);
       $model.add(option);
@@ -498,3 +504,16 @@ async function getBase64Image(url) {
   );
   return `data:image/jpeg;base64,${base64String}`; // Cambia el tipo MIME si es necesario
 }
+
+// Poblar clasificación
+document.addEventListener("DOMContentLoaded", function() {
+  const $classification = document.getElementById("classification");
+  if ($classification) {
+    axios.get("/business-gestion/classifications/").then(function(response) {
+      $classification.add(new Option("Ninguna", ""));
+      response.data.results.forEach(function(el) {
+        $classification.add(new Option(el.name || el.__str__, el.id));
+      });
+    });
+  }
+});

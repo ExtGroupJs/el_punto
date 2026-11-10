@@ -46,9 +46,7 @@ class ShopProductsViewSet(
     queryset = ShopProducts.objects.annotate(
         shop_name=F("shop__name"),
         product_name=F("product__name"),
-        model_brand=Concat(
-            Value(" - "),
-        ),
+        classification_name=F("product__classification__name"),
         pallet_label=Concat(
             F("pallet__rack"),
             F("pallet__section"),
@@ -75,7 +73,7 @@ class ShopProductsViewSet(
     ordering = ["shop_name"]
     ordering_fields = [
         "product_name",
-        "model_brand",
+        "classification_name",
         "shop_name",
         "pallet",
         "pallet_label",

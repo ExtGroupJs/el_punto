@@ -323,7 +323,6 @@ async function loadShopProductsForShop(shopId, palletId) {
     const selectedValues = [];
 
     rows.forEach((item) => {
-      const optionLabel = `${item.product_name || "Producto"} - ${item.model_brand || "-"} (Cant: ${item.quantity || 0})`;
       const option = new Option(optionLabel, item.id);
       select.add(option);
       if (item.pallet === palletId) {
@@ -360,7 +359,6 @@ function renderSelectedShopProductsList() {
         (opt) => String(opt.id) === String(id),
       );
       const label = item
-        ? `${item.product_name || "Producto"} - ${item.model_brand || "-"} (Cant: ${item.quantity || 0})`
         : `ShopProduct #${id}`;
 
       return `<span class="badge badge-light border mr-1 mb-1 p-2" style="font-size: 0.85rem;">
