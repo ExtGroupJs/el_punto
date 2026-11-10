@@ -1,5 +1,6 @@
 from django.contrib import admin
 
+from apps.business_app.models.classification import Classification
 from apps.business_app.models.gallery import Gallery
 from apps.business_app.models.product import Product
 from apps.business_app.models.sell import Sell
@@ -26,6 +27,11 @@ class SafeDeleteTimestampedAdmin(SafeDeleteAdmin, TimestampedAdmin):
         "deleted",
         "deleted_by_cascade",
     }
+
+
+@admin.register(Classification)
+class ClassificationAdmin(GenericModelAdmin):
+    pass
 
 
 @admin.register(Product)

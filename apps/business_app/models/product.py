@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models import Q
 from safedelete import SOFT_DELETE_CASCADE
 
+from apps.business_app.models.classification import Classification
 from apps.common.models import BaseModel
 from safedelete.models import SafeDeleteModel
 
@@ -9,6 +10,9 @@ from safedelete.models import SafeDeleteModel
 class Product(SafeDeleteModel, BaseModel):
     _safedelete_policy = SOFT_DELETE_CASCADE
     name = models.CharField(verbose_name="Nombre", max_length=200)
+    classification = models.ForeignKey(
+        to=Classification, verbose_name="Clasificación", on_delete=models.SET_NULL, null=True, blank=True
+    )
     description = models.TextField(verbose_name="Descripción", null=True, blank=True)
     image = models.ImageField(verbose_name="Imagen", null=True, blank=True)
 

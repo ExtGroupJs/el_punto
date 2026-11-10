@@ -1,5 +1,6 @@
 from rest_framework.routers import SimpleRouter
 
+from apps.business_app.views.classification import ClassificationViewSet
 from apps.business_app.views.gallery import GalleryViewSet
 from apps.business_app.views.dashboard import DashboardViewSet
 from apps.business_app.views.product import ProductViewSet
@@ -19,6 +20,11 @@ from apps.business_app.views.pallet import PalletViewSet
 router = SimpleRouter()
 
 
+router.register(
+    "classifications",
+    ClassificationViewSet,
+    basename="classifications",
+)
 router.register(
     "products",
     ProductViewSet,
