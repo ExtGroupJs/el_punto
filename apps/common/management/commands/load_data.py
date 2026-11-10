@@ -23,27 +23,27 @@ class Command(BaseCommand):
                 attrs=["blink"],
             )
         )
-        call_command("loaddata", "brands.json")
+        call_command("loaddata", "classifications.json")
         print(
             colored(
-                "Successfully added brands",
+                "Successfully added classifications",
                 "green",
                 attrs=["blink"],
             )
         )
-        call_command("loaddata", "models.json")
-        print(
-            colored(
-                "Successfully added models",
-                "green",
-                attrs=["blink"],
-            )
-        )
-        call_command("loaddata", "products.json")
-        print(
-            colored(
-                "Successfully added products",
-                "green",
-                attrs=["blink"],
-            )
-        )
+        # call_command("loaddata", "models.json")
+        # print(
+        #     colored(
+        #         "Successfully added models",
+        #         "green",
+        #         attrs=["blink"],
+        #     )
+        # )
+        # call_command("loaddata", "products.json")
+        # print(
+        #     colored(
+        #         "Successfully added products",
+        #         "green",
+        #         attrs=["blink"],
+        #     )
+        # )

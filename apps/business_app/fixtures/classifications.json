@@ -1,0 +1,66 @@
+[
+    {
+        "model": "business_app.classification",
+        "pk": 1,
+        "fields": {
+            "name": "Granos y cereales",
+            "extra_info": "Alimentos secos a base de cereales y granos. Ej.: arroz, maíz, trigo, avena, pastas y harinas."
+        }
+    },
+    {
+        "model": "business_app.classification",
+        "pk": 5,
+        "fields": {
+            "name": "Frutas y verduras",
+            "extra_info": "Productos frescos de origen vegetal. Ej.: frutas, hortalizas y tubérculos."
+        }
+    },
+    {
+        "model": "business_app.classification",
+        "pk": 3,
+        "fields": {
+            "name": "Cárnicos y embutidos",
+            "extra_info": "Carnes y derivados de origen animal. Ej.: res, cerdo, pollo, pescado y embutidos."
+        }
+    },
+    {
+        "model": "business_app.classification",
+        "pk": 4,
+        "fields": {
+            "name": "Lácteos y huevos",
+            "extra_info": "Productos refrigerados de origen animal. Ej.: leche, queso, yogur, mantequilla y huevos."
+        }
+    },
+    {
+        "model": "business_app.classification",
+        "pk": 6,
+        "fields": {
+            "name": "Panadería y repostería",
+            "extra_info": "Productos de panificación y dulces. Ej.: pan, facturas, tortas y galletitas."
+        }
+    },
+    {
+        "model": "business_app.classification",
+        "pk": 7,
+        "fields": {
+            "name": "Congelados",
+            "extra_info": "Productos que requieren congelación. Ej.: verduras, carnes, comidas preparadas y helados."
+        }
+    },
+    {
+        "model": "business_app.classification",
+        "pk": 2,
+        "fields": {
+            "name": "Bebidas",
+            "extra_info": "Líquidos para consumo. Ej.: aguas, gaseosas, jugos, café, cervezas y vinos."
+        }
+    },
+    {
+        "model": "business_app.classification",
+        "pk": 8,
+        "fields": {
+            "name": "Otras partes y piezas",
+            "extra_info": "Productos complementarios no alimenticios. Ej.: limpieza, higiene, bebés, mascotas y otros."
+        }
+    }
+]
