@@ -465,8 +465,8 @@ async function showProductDetails(productId) {
     inicializarCarruselesProducto(modalImages);
     document.getElementById("modalProductName").textContent =
       product.product.name;
-    document.getElementById("modalBrandName").textContent =
-    document.getElementById("modalModelName").textContent =
+    document.getElementById("modalClassificationName").textContent =
+      product.product.classification?.name || "";
     document.getElementById("modalPrice").textContent =
       `$${product.sell_price}`;
     document.getElementById("modalShopName").textContent = product.shop_name;

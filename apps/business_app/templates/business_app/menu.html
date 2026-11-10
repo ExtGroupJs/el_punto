@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head><title>Business App Menu</title></head>
+<body>
+<h1>Business App Models</h1>
+<ul>
+{% for m in models %}
+<li><a href="{{ m.admin_url }}">{{ m.name }}</a></li>
+{% endfor %}
+</ul>
+</body>
+</html>

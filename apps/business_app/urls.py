@@ -1,7 +1,10 @@
+from django.urls import path
+
 from rest_framework.routers import SimpleRouter
 
 from apps.business_app.views.classification import ClassificationViewSet
 from apps.business_app.views.gallery import GalleryViewSet
+from apps.business_app.views.menu import business_menu
 from apps.business_app.views.dashboard import DashboardViewSet
 from apps.business_app.views.product import ProductViewSet
 from apps.business_app.views.sell_group import PaymentMethodsViewSet, SellGroupViewSet
@@ -96,6 +99,8 @@ router.register(
     basename="gallery",
 )
 
-urlpatterns = []
+urlpatterns = [
+    path("business-menu/", business_menu, name="business-menu"),
+]
 
 urlpatterns += router.urls
