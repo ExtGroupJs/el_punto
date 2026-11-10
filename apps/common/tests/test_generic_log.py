@@ -34,10 +34,6 @@ class TestSellGroupsViewSetFunctionalities(BaseTestClass):
                 "new_value": self.created_instance.sell_price,
                 "old_value": None,
             },
-            "wholesale_price": {
-                "new_value": self.created_instance.wholesale_price,
-                "old_value": None,
-            },
         }
 
         self.assertEqual(log_entry.details, expected_details)

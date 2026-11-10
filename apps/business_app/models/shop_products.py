@@ -40,12 +40,6 @@ class ShopProducts(GenericLogMixin, SafeDeleteModel, BaseModel):
         verbose_name="Precio de venta",
         validators=[validators.MinValueValidator(limit_value=0.3)],
     )
-    wholesale_price = models.FloatField(
-        verbose_name="Precio al por mayor",
-        validators=[validators.MinValueValidator(limit_value=0.3)],
-        null=True,
-        blank=True,
-    )
     sell_price_for_catalog = models.FloatField(
         verbose_name="Precio de venta para catálogo",
         validators=[validators.MinValueValidator(limit_value=0.3)],
@@ -80,8 +74,6 @@ class ShopProducts(GenericLogMixin, SafeDeleteModel, BaseModel):
         return f"{self.product} ({self.extra_info})"
 
     def save(self, *args, **kwargs):
-        if self.wholesale_price is None:
-            self.wholesale_price = self.sell_price
         # 1. Check if django-safedelete is performing a soft delete action
         is_safedelete = kwargs.get("keep_deleted", False) or getattr(
             self, "deleted", None
