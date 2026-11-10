@@ -1,9 +1,7 @@
 from rest_framework.routers import SimpleRouter
 
-from apps.business_app.views.brand import BrandViewSet
 from apps.business_app.views.gallery import GalleryViewSet
 from apps.business_app.views.dashboard import DashboardViewSet
-from apps.business_app.views.model import ModelViewSet
 from apps.business_app.views.product import ProductViewSet
 from apps.business_app.views.sell_group import PaymentMethodsViewSet, SellGroupViewSet
 from apps.business_app.views.shop import ShopViewSet
@@ -21,16 +19,6 @@ from apps.business_app.views.pallet import PalletViewSet
 router = SimpleRouter()
 
 
-router.register(
-    "brands",
-    BrandViewSet,
-    basename="brands",
-)
-router.register(
-    "models",
-    ModelViewSet,
-    basename="models",
-)
 router.register(
     "products",
     ProductViewSet,

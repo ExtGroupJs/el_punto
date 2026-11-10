@@ -57,8 +57,6 @@ class SellGroupViewSet(
         "sells__shop_product": ["exact"],
         "sells__shop_product__shop": ["exact"],
         "sells__shop_product__product": ["exact"],
-        "sells__shop_product__product__model": ["exact"],
-        "sells__shop_product__product__model__brand": ["exact"],
     }
 
     search_fields = [
@@ -68,8 +66,6 @@ class SellGroupViewSet(
         "client__phone",
         "seller__username",
         "sells__shop_product__product__name",
-        "sells__shop_product__product__model__name",
-        "sells__shop_product__product__model__brand__name",
     ]
 
     # Only columns of the model: ``sells`` and ``client_name`` are serializer

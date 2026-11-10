@@ -43,8 +43,6 @@ class SellViewSet(
         "shop_product__shop": ["exact"],
         "seller": ["exact"],
         "shop_product__product": ["exact"],
-        "shop_product__product__model": ["exact"],
-        "shop_product__product__model__brand": ["exact"],
         "shop_product__sell_price": ["gte", "lte", "exact"],
         "quantity": ["gte", "lte", "exact"],
         "created_timestamp": ["gte", "lte"],
@@ -53,8 +51,6 @@ class SellViewSet(
 
     search_fields = [
         "shop_product__product__name",
-        "shop_product__product__model__name",
-        "shop_product__product__model__brand__name",
         "seller__username",
         "extra_info",
     ]

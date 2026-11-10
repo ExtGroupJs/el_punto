@@ -35,9 +35,7 @@ class ShopProductsLogsViewSet(GenericLogViewSet):
                 full_name=Concat(
                     F("product__name"),
                     Value(" ("),
-                    F("product__model__brand__name"),
                     Value(" - "),
-                    F("product__model__name"),
                     Value(")"),
                     Value(" ("),
                     F("shop__name"),

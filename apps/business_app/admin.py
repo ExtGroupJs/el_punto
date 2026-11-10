@@ -1,8 +1,6 @@
 from django.contrib import admin
 
-from apps.business_app.models.brand import Brand
 from apps.business_app.models.gallery import Gallery
-from apps.business_app.models.model import Model
 from apps.business_app.models.product import Product
 from apps.business_app.models.sell import Sell
 from apps.business_app.models.sell_group import SellGroup
@@ -28,16 +26,6 @@ class SafeDeleteTimestampedAdmin(SafeDeleteAdmin, TimestampedAdmin):
         "deleted",
         "deleted_by_cascade",
     }
-
-
-@admin.register(Brand)
-class BrandAdmin(GenericModelAdmin):
-    pass
-
-
-@admin.register(Model)
-class ModelAdmin(GenericModelAdmin):
-    pass
 
 
 @admin.register(Product)
@@ -75,8 +63,6 @@ class PalletAdmin(GenericModelAdmin):
 class SellAdmin(TimestampedAdmin):
     search_fields = [
         "shop_product__product__name",
-        "shop_product__product__model__name",
-        "shop_product__product__model__brand__name",
     ]
 
 

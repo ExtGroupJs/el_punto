@@ -1,11 +1,11 @@
 {
     "schema_version": 2,
-    "commit": "5d703b76f981ca47af5577cdee572b61de0790a5",
-    "indexed_at": "2026-11-10T14:55:12Z",
+    "commit": "35fa01410fb70b4bc80093eb8eeefb5049993af3",
+    "indexed_at": "2026-11-10T16:15:42Z",
     "project": "home-ealmeida-Trabajo-Working_now-ExtGroupJs-code-el_punto",
-    "nodes": 21708,
-    "edges": 124575,
-    "original_size": 131203072,
-    "compressed_size": 18500401,
+    "nodes": 21633,
+    "edges": 123986,
+    "original_size": 130744320,
+    "compressed_size": 18506361,
     "compression_level": 3
 }

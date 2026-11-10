@@ -49,7 +49,6 @@ class GroupSellViewSet(
         "total": ["gte", "lte"],
         "discount": ["exact"],
         "sells__shop_product__shop": ["exact"],
-        "sells__shop_product__product__model__brand": ["exact"],
     }
     search_fields = [
         "extra_info",

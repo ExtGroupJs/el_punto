@@ -1,4 +1,3 @@
-from apps.business_app.models.model import Model
 from apps.business_app.models.shop import Shop
 from apps.business_app.models.shop_products import ShopProducts
 
@@ -21,25 +20,6 @@ def in_stock_shop_products(shop_id):
 def product_ids_in_stock(shop_id):
     """Ids of the products with stock in the given shop."""
     return in_stock_shop_products(shop_id).values("product_id")
-
-
-def model_ids_in_stock(shop_id):
-    """Ids of the models having at least one product with stock in the shop."""
-    return in_stock_shop_products(shop_id).values("product__model_id")
-
-
-def brand_ids_in_stock(shop_id):
-    """
-    Ids of the brands having at least one model with stock in the shop.
-
-    `Brand` is reached through `Model` -> `Product` -> `ShopProducts`, so the
-    ids are collected from the models and then resolved to their brand.
-    """
-    return (
-        Model.objects.filter(id__in=model_ids_in_stock(shop_id))
-        .values("brand_id")
-        .distinct()
-    )
 
 
 def get_fallback_catalog_shop():

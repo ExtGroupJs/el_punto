@@ -1,7 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from apps.business_app.models.model import Model
 from apps.business_app.models.shop import Shop
 from django.core.validators import RegexValidator
 
@@ -19,10 +18,6 @@ class Client(models.Model):
         ],
     )
     shop = models.ForeignKey(to=Shop, on_delete=models.CASCADE)
-
-    models = models.ManyToManyField(
-        to=Model, related_name="clients", verbose_name=_("Modelos de interés")
-    )
 
     class Meta:
         verbose_name = _("Client")

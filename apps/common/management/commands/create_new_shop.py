@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from apps.business_app.models import Shop, Product, ShopProducts, Model, Brand
+from apps.business_app.models import Shop, Product, ShopProducts
 
 
 class Command(BaseCommand):
@@ -551,17 +551,10 @@ class Command(BaseCommand):
             },
         )
         for product_name, model, quantity, cost_price, sell_price, extra_info in data:
-            brand = Brand.objects.get(
-                name=model.strip().split(" - ")[0]
-            )  # Extract the brand name
-            model, _ = Model.objects.get_or_create(
-                name=model.strip().split(" - ")[1], defaults={"brand": brand}
-            )
-            product = Product.objects.filter(name=product_name, model=model).first()
+            product = Product.objects.filter(name=product_name).first()
             if not product:
                 product = Product.objects.create(
                     name=product_name,
-                    model=model,
                 )
 
             shop_product, _ = ShopProducts.objects.update_or_create(

@@ -23,9 +23,7 @@ def product_name(with_shop=False):
     label = Concat(
         F("shop_product__product__name"),
         Value(" ("),
-        F("shop_product__product__model__brand__name"),
         Value(" - "),
-        F("shop_product__product__model__name"),
         Value(") "),
     )
     if not with_shop:

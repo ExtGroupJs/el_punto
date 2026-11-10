@@ -34,8 +34,6 @@ class InputViewSet(
         "shop_product__shop": ["exact"],
         "author": ["exact"],
         "shop_product__product": ["exact"],
-        "shop_product__product__model": ["exact"],
-        "shop_product__product__model__brand": ["exact"],
         "quantity": ["gte", "lte", "exact"],
         "created_timestamp": ["gte", "lte"],
         "updated_timestamp": ["gte", "lte"],
@@ -43,8 +41,6 @@ class InputViewSet(
 
     search_fields = [
         "shop_product__product__name",
-        "shop_product__product__model__name",
-        "shop_product__product__model__brand__name",
         "author__username",
         "input_group__extra_info",
     ]
@@ -61,9 +57,7 @@ class InputViewSet(
         product_name = Concat(
             F("shop_product__product__name"),
             Value(" ("),
-            F("shop_product__product__model__brand__name"),
             Value(" - "),
-            F("shop_product__product__model__name"),
             Value(") "),
         )
         if request_user.groups.filter(

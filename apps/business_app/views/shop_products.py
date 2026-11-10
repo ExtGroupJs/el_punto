@@ -47,9 +47,7 @@ class ShopProductsViewSet(
         shop_name=F("shop__name"),
         product_name=F("product__name"),
         model_brand=Concat(
-            F("product__model__brand__name"),
             Value(" - "),
-            F("product__model__name"),
         ),
         pallet_label=Concat(
             F("pallet__rack"),
@@ -63,8 +61,6 @@ class ShopProductsViewSet(
         "shop": ["exact"],
         "pallet": ["exact"],
         "product": ["exact"],
-        "product__model": ["exact"],
-        "product__model__brand": ["exact"],
         "quantity": ["gte", "lte", "exact"],
         "sell_price": ["gte", "lte", "exact"],
         "wholesale_price": ["gte", "lte", "exact"],
@@ -76,8 +72,6 @@ class ShopProductsViewSet(
         "extra_info",
         "shop__name",
         "product__name",
-        "product__model__name",
-        "product__model__brand__name",
     ]
     ordering = ["shop_name"]
     ordering_fields = [

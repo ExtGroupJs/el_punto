@@ -26,8 +26,6 @@ class ProductViewSet(SerializerMapMixin, viewsets.ModelViewSet, GenericAPIView):
             ).select_related("shop"),
         ),
         Prefetch("gallery", queryset=Gallery.objects.all()),
-    ).annotate(
-        model_name=Concat(F("model__brand__name"), Value(" - "), F("model__name"))
     )
     serializer_class = ProductSerializer
     list_serializer_class = ReadProductSerializer
@@ -39,15 +37,10 @@ class ProductViewSet(SerializerMapMixin, viewsets.ModelViewSet, GenericAPIView):
         CommonOrderingFilter,
     ]
     pagination_class = AllResultsSetPagination
-    filterset_fields = [
-        "model",
-        "model__brand",
-    ]
+    filterset_fields = []
     search_fields = [
         "name",
         "description",
-        "model__brand__name",
-        "model__name",
     ]
     ordering = ["name"]
-    ordering_fields = ["name", "model_name", "description"]
+    ordering_fields = ["name", "description"]
